@@ -24,7 +24,7 @@ public class carryCar extends Car implements NotLoadable {
     }
 
     private void loadCar(Car car) {
-        if  (!rampState && canLoad) {
+        if  (!rampState && car instanceof NotLoadable) {
             if ((car.getYPos() - this.getYPos()) < 5 && ((car.getXPos() - this.getXPos()) < 5)) {
                 for (int i = 0; i < 5; i++) {
                     if (load[i] == null) {
