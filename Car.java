@@ -136,6 +136,15 @@ public abstract class Car implements Movable {
     public double getYPos(){
         return yPos;
     }
+
+    public void setXPos(double x) {
+        xPos = x;
+    }
+
+    public void setYPos(double y) {
+        yPos = y;
+    }
+
     public String getDirection(){
         return direction;
     }
