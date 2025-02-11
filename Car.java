@@ -21,7 +21,6 @@ public abstract class Car implements Movable {
        this.modelName = modelName;
        stopEngine();
 
-
     }
 
     public int getNrDoors(){
@@ -137,16 +136,21 @@ public abstract class Car implements Movable {
         return yPos;
     }
 
-    public void setXPos(double x) {
+    protected void setXPos(double x) {
         xPos = x;
     }
 
-    public void setYPos(double y) {
+    protected void setYPos(double y) {
         yPos = y;
     }
 
     public String getDirection(){
         return direction;
     }
+
+    public boolean isLoadable() {
+        return true;
+    }
+
 
 }

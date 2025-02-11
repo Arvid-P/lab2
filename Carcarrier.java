@@ -2,29 +2,29 @@ package lab1;
 
 import java.awt.*;
 
-public class carryCar extends Car implements NotLoadable {
+public class Carcarrier extends Car {
 
     private boolean rampState;
     private Car[] load = new Car[5];
 
-    public carryCar(){
+    public Carcarrier(){
         super(2, 80, Color.gray, "Scania");
     }
 
-    private void rampUp(){
+    public void rampUp(){
         if(getCurrentSpeed() == 0 ){
             rampState = true;
         }
     }
 
-    private void rampDown() {
+    public void rampDown() {
         if (getCurrentSpeed() == 0) {
             rampState = false;
         }
     }
 
-    private void loadCar(Car car) {
-        if  (!rampState && car instanceof NotLoadable) {
+    public void loadCar(Car car) {
+        if  (!rampState && car.isLoadable() && getCurrentSpeed() == 0) {
             if ((car.getYPos() - this.getYPos()) < 5 && ((car.getXPos() - this.getXPos()) < 5)) {
                 for (int i = 0; i < 5; i++) {
                     if (load[i] == null) {
@@ -36,8 +36,8 @@ public class carryCar extends Car implements NotLoadable {
         }
     }
 
-    private void unloadCar() {
-        if  (!rampState) {
+    public void unloadCar() {
+        if  (!rampState && getCurrentSpeed() == 0) {
             for (int i = 4; i >= 0; i--) {
                 if (load[i] != null) {
                     load[i].setXPos(this.getXPos() + 3);
@@ -49,9 +49,32 @@ public class carryCar extends Car implements NotLoadable {
         }
     }
 
-    public double speedFactor(){
+    protected double speedFactor(){
         return enginePower * 0.01;
     }
 
+    public boolean getRampState(){
+        return rampState;
+    }
 
+    @Override
+    public boolean isLoadable() {
+        return false;
+    }
+
+    @Override
+    public void move() {
+        super.move();
+        for (int i = 0; i < 5; i++) {
+            load[i].setXPos(this.getXPos());
+            load[i].setYPos(this.getYPos());
+        }
+    }
+
+    @Override
+    public void startEngine(){
+    if  (!rampState) {
+            super.startEngine();
+        }
+    }
 }
