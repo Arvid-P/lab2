@@ -1,4 +1,4 @@
-package lab1;
+package lab2;
 
 import java.awt.*;
 import java.math.*;
@@ -71,8 +71,10 @@ public class Carcarrier extends Car {
     public void move() {
         super.move();
         for (int i = 0; i < 5; i++) {
-            load[i].setXPos(this.getXPos());
-            load[i].setYPos(this.getYPos());
+            if (load[i] != null) {
+                load[i].setXPos(this.getXPos());
+                load[i].setYPos(this.getYPos());
+            }
         }
     }
 

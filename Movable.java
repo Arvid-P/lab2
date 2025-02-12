@@ -1,4 +1,4 @@
-package lab1;
+package lab2;
 
 /* Interface of methods that makes the car move */
 public interface Movable {

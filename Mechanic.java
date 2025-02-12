@@ -1,4 +1,4 @@
-package lab1;
+package lab2;
 
 import java.util.ArrayList;
 
@@ -22,13 +22,7 @@ public class Mechanic<T extends Car> {
         return car;
     }
 
-    public static void main(String[] args) {
-        Mechanic<Volvo240> volvoMechanic = new Mechanic<>(2);
-        Mechanic<Car> generalMechanic = new Mechanic<>(10);
-        Volvo240 black = new Volvo240();
-        Saab95 white = new Saab95();
-        Scania big = new Scania();
-        Carcarrier veryempty = new Carcarrier();
+    public ArrayList<T> getCars(){return cars;}
 
-    }
+
 }
