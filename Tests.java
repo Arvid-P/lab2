@@ -5,15 +5,15 @@ import org.junit.Test;
 
 public class Tests {
 
-    private Volvo240 volvo = new Volvo240();
-    private Saab95 saab95 = new Saab95();
-    private Scania scania = new Scania();
-    private Carcarrier carcarrier = new Carcarrier();
-    private Mechanic<Volvo240> volvoMechanic = new Mechanic<>(2);
-    private Mechanic<Car> generalMechanic = new Mechanic<>(10);
-    private Volvo240 blackVolvo = new Volvo240();
-    private Saab95 whiteSaab = new Saab95();
-    private Scania bigScania = new Scania();
+    private final Volvo240 volvo = new Volvo240();
+    private final Saab95 saab95 = new Saab95();
+    private final Scania scania = new Scania();
+    private final Carcarrier carcarrier = new Carcarrier();
+    private final Mechanic<Volvo240> volvoMechanic = new Mechanic<>(2);
+    private final Mechanic<Car> generalMechanic = new Mechanic<>(10);
+    private final Volvo240 blackVolvo = new Volvo240();
+    private final Saab95 whiteSaab = new Saab95();
+    private final Scania bigScania = new Scania();
 
 
 
@@ -59,7 +59,7 @@ public class Tests {
         carcarrier.rampUp();
         carcarrier.loadCar(volvo);
         for (int i = 0; i < 5; i++) {
-            assertEquals(null, carcarrier.getLoad()[i]);
+            assertNull(carcarrier.getLoad()[i]);
         }
     }
 
@@ -67,7 +67,7 @@ public class Tests {
     public void testLoadLoadable() {
         carcarrier.loadCar(carcarrier);
         for (int i = 0; i < 5; i++) {
-            assertEquals(null, carcarrier.getLoad()[i]);
+            assertNull(carcarrier.getLoad()[i]);
         }
     }
 
@@ -76,7 +76,7 @@ public class Tests {
         carcarrier.startEngine();
         carcarrier.loadCar(volvo);
         for (int i = 0; i < 5; i++) {
-            assertEquals(null, carcarrier.getLoad()[i]);
+            assertNull(carcarrier.getLoad()[i]);
         }
     }
 
@@ -86,7 +86,7 @@ public class Tests {
         carcarrier.loadCar(volvo);
         carcarrier.setYPos(0);
         for (int i = 0; i < 5; i++) {
-            assertEquals(null, carcarrier.getLoad()[i]);
+            assertNull(carcarrier.getLoad()[i]);
         }
 
         carcarrier.setYPos(0);
@@ -94,7 +94,7 @@ public class Tests {
         carcarrier.loadCar(volvo);
 
         for (int i = 0; i < 5; i++) {
-            assertEquals(null, carcarrier.getLoad()[i]);
+            assertNull(carcarrier.getLoad()[i]);
         }
     }
 
@@ -150,17 +150,17 @@ public class Tests {
         carcarrier.unloadCar();
         assertEquals(volvo, carcarrier.getLoad()[0]);
         assertEquals(scania, carcarrier.getLoad()[1]);
-        assertEquals(null, carcarrier.getLoad()[2]);
+        assertNull(carcarrier.getLoad()[2]);
 
         carcarrier.unloadCar();
         assertEquals(volvo, carcarrier.getLoad()[0]);
-        assertEquals(null, carcarrier.getLoad()[1]);
-        assertEquals(null, carcarrier.getLoad()[2]);
+        assertNull(carcarrier.getLoad()[1]);
+        assertNull(carcarrier.getLoad()[2]);
 
         carcarrier.unloadCar();
-        assertEquals(null, carcarrier.getLoad()[0]);
-        assertEquals(null, carcarrier.getLoad()[1]);
-        assertEquals(null, carcarrier.getLoad()[2]);
+        assertNull(carcarrier.getLoad()[0]);
+        assertNull(carcarrier.getLoad()[1]);
+        assertNull(carcarrier.getLoad()[2]);
 
         carcarrier.unloadCar();
     }
@@ -202,7 +202,6 @@ public class Tests {
         carcarrier.rampUp();
         carcarrier.startEngine();
         assertEquals(0, carcarrier.getCurrentSpeed(),0);
-
     }
 
     @Test
@@ -213,15 +212,12 @@ public class Tests {
             volvoMechanic.addCar(blackVolvo);
             //volvoMechanic.addCar(whiteSaab);
         }
-
         assertEquals(10,generalMechanic.getCars().size());
         assertEquals(2 ,volvoMechanic.getCars().size());
     }
 
-
     @Test
     public void MechanicRemovesCar(){
-
         generalMechanic.addCar(whiteSaab);
         generalMechanic.addCar(bigScania);
 
@@ -230,14 +226,10 @@ public class Tests {
             assertEquals(2,generalMechanic.getCars().size());
 
         }
-
         generalMechanic.removeCar(whiteSaab);
 
         assertEquals(1,generalMechanic.getCars().size());
         assertEquals(bigScania, generalMechanic.getCars().getFirst());
-
-
-
     }
 
 }
