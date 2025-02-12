@@ -9,6 +9,11 @@ public class Tests {
     private Saab95 saab95 = new Saab95();
     private Scania scania = new Scania();
     private Carcarrier carcarrier = new Carcarrier();
+    private Mechanic<Volvo240> volvoMechanic = new Mechanic<>(2);
+    private Mechanic<Car> generalMechanic = new Mechanic<>(10);
+    private Volvo240 black = new Volvo240();
+    private Saab95 white = new Saab95();
+
 
     @Test
     public void testScaniaRampAngle() {
@@ -129,6 +134,68 @@ public class Tests {
         }
         assertEquals(1,count);
     }
+
+
+    @Test
+    public void speedFactorTest(){assertEqual(8,carcarrier.speedFactor());}
+
+    @Test
+    public void TestIsLoadable(){assertFalse("false", carcarrier.isLoadable());}
+
+    @Test
+    public void TestCarsOnCarrier(){
+
+        carcarrier.stopEngine();
+        carcarrier.loadCar(volvo);
+        carcarrier.loadCar(scania);
+
+        carcarrier.gas(1);
+        carcarrier.move();
+        assertEqual(0.8,carcarrier.getYPos());
+
+        for (int i = 0; i < 2; i++) {assertEqual(0.8,carcarrier.getLoad()[i].getYPos());}
+
+        carcarrier.turnRight();
+        carcarrier.move();
+        carcarrier.gas(1);
+        assertEqual(1.6,carcarrier.getXPos());
+        for (int i = 0; i < 2; i++) {assertEqual(1.6,carcarrier.getLoad()[i].getxPos());}
+
+
+
+    }
+
+    @Test
+    public void testStartEngine(){
+
+        carcarrier.startEngine();
+        assertEqual(0.1, carcarrier.getCurrentSpeed());
+
+        carcarrier.stopEngine();
+        carcarrier.rampUp();
+        carcarrier.startEngine();
+        assertEqual(0, carcarrier.getCurrentSpeed());
+
+    }
+
+    @Test
+    public void MechanicAddsCar(){
+
+        for(i = 0; i < 15; i++){
+            volvoMechanic.addCar(black);
+            //volvoMechanic.addCar(white);
+
+        }
+
+        assertEqual(10 ,volvoMechanic.getCars().size());
+
+
+
+
+    }
+
+
+
 
 
 }
