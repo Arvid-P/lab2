@@ -36,7 +36,6 @@ public class Scania extends Car {
         rampDown();
     }
 
-
     //Returns the current ramp angle
     public int getRampAngle(){ return angle;}
 
@@ -45,11 +44,17 @@ public class Scania extends Car {
         return enginePower * 0.01;
     }
 
+    public boolean isLoadable() {
+        return true;
+    }
+
     //The car is ony allowed to move if the ramps angle is 0
-    @Override
-    public void startEngine(){
-        if (getRampAngle() == 0) {
-            super.startEngine();
+    protected boolean startCondition() {
+        if  (getRampAngle() == 0) {
+            return true;
+        }
+        else {
+            return false;
         }
     }
 

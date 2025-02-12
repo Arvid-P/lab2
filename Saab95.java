@@ -27,4 +27,12 @@ public class Saab95 extends Car{
         return enginePower * 0.01 * turbo;
     }
 
+    public boolean isLoadable() {
+        return true;
+    }
+
+    protected boolean startCondition() {
+        return true;
+    }
+
 }

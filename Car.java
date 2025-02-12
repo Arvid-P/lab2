@@ -44,7 +44,9 @@ public abstract class Car implements Movable {
     }
 
     public void startEngine(){
-        currentSpeed = 0.1;
+        if (startCondition()) {
+            currentSpeed = 0.1;
+        }
     }
 
     public void stopEngine(){
@@ -144,13 +146,9 @@ public abstract class Car implements Movable {
         yPos = y;
     }
 
-    public String getDirection(){
-        return direction;
-    }
+    protected abstract boolean isLoadable();
 
-    public boolean isLoadable() {
-        return true;
-    }
+    protected abstract boolean startCondition();
 
 
 }

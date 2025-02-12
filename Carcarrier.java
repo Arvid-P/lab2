@@ -25,13 +25,14 @@ public class Carcarrier extends Car {
     }
 
     public void loadCar(Car car) {
-        if  (!rampState && car.isLoadable() && getCurrentSpeed() == 0) {
-            if (Math.abs(car.getYPos() - this.getYPos()) < 5 && (Math.abs(car.getXPos() - this.getXPos()) < 5)) {
-                for (int i = 0; i < 5; i++) {
-                    if (load[i] == null) {
-                        load[i] = car;
-                        break;
-                    }
+        if  (!rampState && car.isLoadable()
+                && getCurrentSpeed() == 0
+                && Math.abs(car.getYPos() - this.getYPos()) < 5
+                && (Math.abs(car.getXPos() - this.getXPos()) < 5)) {
+            for (int i = 0; i < 5; i++) {
+                if (load[i] == null) {
+                    load[i] = car;
+                    break;
                 }
             }
         }
@@ -60,12 +61,18 @@ public class Carcarrier extends Car {
 
     public Car[] getLoad() {return load;}
 
-    @Override
     public boolean isLoadable() {
         return false;
     }
 
-
+    protected boolean startCondition() {
+        if  (!rampState) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 
     @Override
     public void move() {
@@ -78,10 +85,4 @@ public class Carcarrier extends Car {
         }
     }
 
-    @Override
-    public void startEngine(){
-    if  (!rampState) {
-            super.startEngine();
-        }
-    }
 }
